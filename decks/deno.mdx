@@ -1,6 +1,14 @@
-import { CodeSurfer, CodeSurferColumns, Step } from 'code-surfer';
+import {
+    CodeSurfer,
+    CodeSurferColumns,
+    Step
+} from 'code-surfer';
 import { github, vsDark, dracula } from '@code-surfer/themes';
-import { Image, Notes } from 'mdx-deck';
+import {
+    Appear,
+    Image,
+    Notes,
+} from 'mdx-deck';
 
 export const theme = vsDark;
 
@@ -40,14 +48,18 @@ export const theme = vsDark;
 
 ### Node.jsに足りなかったこと
 
-* 動的型付けのせいでエラーが不明瞭
-* Promiseがコアに組み込まれておらず、`async`/`await`での抽象化ができない
-* Linterでもなんでもフルアクセス権を持ってしまいセキュアではない
-* ビルドシステムに gyp を採用したが取り残されてしまい辛い
-* package.jsonでのモジュールの定義では正しく抽象化できていない
-* module解決のアルゴリズムが複雑になりすぎた
-* .js拡張子は省略させず、明示的なほうが本質的
-* **イベントI/Oの設計に注力しすぎてモジュール設計が後回しになってしまった**
+<ul>
+    <li>動的型付けのせいでエラーが不明瞭</li>
+    <Appear>
+        <li>Promiseがコアに組み込まれておらず、`async`/`await`での抽象化ができない</li>
+        <li>Linterでもなんでもフルアクセス権を持ってしまいセキュアではない</li>
+        <li>ビルドシステムに gyp を採用したが取り残されてしまい辛い</li>
+        <li>package.jsonでのモジュールの定義では正しく抽象化できていない</li>
+        <li>module解決のアルゴリズムが複雑になりすぎた</li>
+        <li>.js拡張子は省略させず、明示的なほうが本質的</li>
+        <li>**イベントI/Oの設計に注力しすぎてモジュール設計が後回しになってしまった**</li>
+    </Appear>
+</ul>
 
 ----
 
