@@ -1,0 +1,168 @@
+import { CodeSurfer, CodeSurferColumns, Step } from 'code-surfer';
+import { github, vsDark, dracula } from '@code-surfer/themes';
+import { Image, Notes } from 'mdx-deck';
+
+export const theme = vsDark;
+
+# Dive into the Deno World
+
+----
+
+# 自己紹介
+
+![アイコン right](https://github.com/lollipop-onl.png)
+
+* **simochee**
+* Twitter [@lollipop_onl](https://twitter.com/lollipop_onl)
+
+----
+
+# What is "Deno"?
+
+----
+
+> Deno aims to provide a productive and secure scripting environment for the modern programmer. It is built on top of V8, Rust, and TypeScript.
+
+----
+
+## Denoとは
+
+* Node.jsの開発者、 Ryan Dahl氏 によって開発されたV8で動くセキュアなTypeScriptの実行環境
+* 
+
+----
+
+## Deno開発の経緯
+
+[Node.js における設計ミス By Ryan Dahl - from scratch (2018)](https://yosuke-furukawa.hatenablog.com/entry/2018/06/07/080335)
+
+----
+
+### Node.jsに足りなかったこと
+
+* 動的型付けのせいでエラーが不明瞭
+* Promiseがコアに組み込まれておらず、`async`/`await`での抽象化ができない
+* Linterでもなんでもフルアクセス権を持ってしまいセキュアではない
+* ビルドシステムに gyp を採用したが取り残されてしまい辛い
+* package.jsonでのモジュールの定義では正しく抽象化できていない
+* module解決のアルゴリズムが複雑になりすぎた
+* .js拡張子は省略させず、明示的なほうが本質的
+* **イベントI/Oの設計に注力しすぎてモジュール設計が後回しになってしまった**
+
+----
+
+## Denoの構成
+
+* TypeScript, V8, Rustの３層で構成される
+
+----
+
+### TypeScript
+
+* Denoのフロントエンド
+* TypeScriptから呼ぶDenoのAPIがある
+* `import 'deno';`は唯一URL以外で参照できる
+* 🤔 TypeScriptはFlatBuffersでバイナリメッセージを作ってRustのRPCを呼んでいる
+
+----
+
+### V8
+
+* コンパイラ
+* libdenoというC++のバインディングレイヤがある
+
+----
+
+### Rust
+
+* Denoのバックエンド
+* IOやネットワーク、その他OS近くの機能を実装
+* TypeScriptからFlatBuffersでメッセージを受け取り、RPCの結果を返している
+
+----
+
+## 実際に使ってみよう
+
+[deno入門2018 - keroxpのScrapbox](https://scrapbox.io/keroxp/deno%E5%85%A5%E9%96%802018)
+
+----
+
+### インストール
+
+<Note>
+
+実行環境なので`npm`とかじゃ当然入らない
+
+</Note>
+
+[denoland/deno_install: Deno Binary Installer](https://github.com/denoland/deno_install)
+
+<CodeSurferColumns themes={[vsDark]}>
+
+<Step>
+
+```bash title="MacOS"
+$ curl -fsSL https://deno.land/x/install/install.sh | sh
+# または
+$ brew install deno
+```
+
+</Step>
+
+<Step>
+
+```bash title="Windows"
+$ iwr https://deno.land/x/install/install.ps1 -useb | iex
+# または
+$ scoop install deno
+```
+</Step>
+
+<Step>
+
+```bash title="Cargo" subtitle="バックエンドがRustなのでCargoも使える"
+$ cargo install deno_cli
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+----
+
+## とりあえず実行してみる
+
+<CodeSurferColumns themes={[vsDark]}>
+
+<Step>
+
+```bash
+$ deno https://deno.land/std/examples/welcome.ts
+```
+
+</Step>
+
+<Step>
+
+```bash
+$ deno https://deno.land/std/examples/welcome.ts
+Download https://deno.land/std/examples/welcome.ts
+Compile https://deno.land/std/examples/welcome.ts
+Welcome to Deno 🦕
+```
+
+</Step>
+
+</CodeSurferColumns>
+
+----
+
+# References
+
+* [deno / (Official Website)](https://deno.land/)
+* [denoland/deno: A secure JavaScript and TypeScript runtime](https://github.com/denoland/deno)
+* [Deno について知っていることと、今後への期待 v1811 - Qiita](https://qiita.com/euxn23/items/f3b45e3c093e448acf9b)
+* [Node.js における設計ミス By Ryan Dahl - from scratch](https://yosuke-furukawa.hatenablog.com/entry/2018/06/07/080335)
+* [Node.jsにPromiseが再びやって来た！ - ぼちぼち日記](https://jovi0608.hatenablog.com/entry/20140319/1395199285)
+* [deno入門2018 - keroxpのScrapbox](https://scrapbox.io/keroxp/deno%E5%85%A5%E9%96%802018)
+* [deno_code_reading.md](https://gist.github.com/mizchi/31e5628751330b624a0e8ada9e739b1e)
