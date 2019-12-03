@@ -1,0 +1,12 @@
+{
+  "name": "dive-into-the-deno-world",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lollipop-onl/dive-into-the-deno-world.git",
+  "author": "lollipop-onl <lollipop@simoochee.net>",
+  "license": "MIT",
+  "dependencies": {
+    "code-surfer": "^0.5.5",
+    "mdx-deck": "^3.0.13"
+  }
+}
